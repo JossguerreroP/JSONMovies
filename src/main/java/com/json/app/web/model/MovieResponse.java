@@ -17,5 +17,4 @@ public class MovieResponse {
     private List<Movie> results;
     private int total_pages;
     private int total_results;
-
 }
