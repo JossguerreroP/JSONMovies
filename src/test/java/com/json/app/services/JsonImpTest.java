@@ -52,6 +52,7 @@ public class JsonImpTest {
 	@Test
 	void getList() {
 		List<MovieDTO>  moviesList = jsonService.getAll();
+		System.out.print(moviesList);
 	}
 	
 	@Test

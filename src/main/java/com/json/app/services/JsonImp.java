@@ -25,12 +25,13 @@ public class JsonImp implements JsonService{
 	private final ObjectMapper objectMapper;
 	private final MovieRepository movieRepository;
 	private final MovieMapper movieMapper;
-	
+	private List<MovieDTO> ok;
 	
 	public Integer checkData() {
 		return this.movieRepository.findAll().size();
 	}
 	
+
 	
 	@Override
 	public MovieEntity newMovie(MovieDTO dto) {
@@ -41,31 +42,35 @@ public class JsonImp implements JsonService{
 	@Override
 	@Transactional
 	public List<MovieDTO> getAll() {
-		
 		if(this.checkData()==0) {
-				this.createMovieObjects();
-			return null;
-			
-		} else 
-		
-		
-		 return this.movieRepository.findAll().stream()
-				.map(movieMapper::movieEntitytoMovieDTO)
-				 .collect(Collectors.toList());
+			System.out.print("NOOOOOOOOOOOOOOOO DATAAAAAAAAAAAAAAA");
+			try {
+				this.ok = createMovieObjects();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			System.out.print("DATAAAAAAAAAAAAAAA FOUND");
+			 this.ok = this.movieRepository.findAll().stream()
+						.map(movieMapper::movieEntitytoMovieDTO)
+						 .collect(Collectors.toList());
+		}
+		return ok;
 	}
 	
 	
 	
-	private void createMovieObjects() {
-	
-		try {
+	public List<MovieDTO> createMovieObjects() throws IOException {
 			MovieResponse movres = this.DeserializeOrigin();
-			System.out.print(movres.getResults());
+			List<MovieEntity> moviesEntities =movres
+					.getResults()
+					.stream()
+					.map(movieMapper::movieDTOtoMovieEntity)
+					.toList();
+					movieRepository.saveAll(moviesEntities);
+					return movres.getResults();
 			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 
