@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 public class MovieResponse {
 	private int page;
-    private List<Movie> results;
+    private List<MovieDTO> results;
     private int total_pages;
     private int total_results;
 }

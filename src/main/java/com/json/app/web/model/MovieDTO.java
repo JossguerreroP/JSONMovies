@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Movie {
+public class MovieDTO {
 	
 		private boolean adult;
 	    private String backdrop_path;
