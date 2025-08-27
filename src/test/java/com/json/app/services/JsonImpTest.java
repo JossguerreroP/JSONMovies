@@ -50,7 +50,6 @@ public class JsonImpTest {
 	@Test
 	void newMovieTest() {
 		MovieEntity savedMovie = jsonService.newMovie(dto);
-		
 	}
 	
 	@Test
