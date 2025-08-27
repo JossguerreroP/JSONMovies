@@ -5,9 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.json.app.domain.MovieEntity;
 import com.json.app.repository.MovieRepository;
 import com.json.app.web.model.MovieDTO;
@@ -55,7 +52,11 @@ public class JsonImpTest {
 	@Test
 	void getList() {
 		List<MovieDTO>  moviesList = jsonService.getAll();
-		System.out.print(moviesList);
+	}
+	
+	@Test
+	void deleteById() {
+		 jsonService.delete(dto);
 		
 	}
 	
