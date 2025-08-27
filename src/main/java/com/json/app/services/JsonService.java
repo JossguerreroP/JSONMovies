@@ -1,5 +1,8 @@
 package com.json.app.services;
 
-public class JsonService {
+import com.json.app.domain.MovieEntity;
 
+
+public interface JsonService {
+	MovieEntity newMovie(MovieEntity movie);
 }
